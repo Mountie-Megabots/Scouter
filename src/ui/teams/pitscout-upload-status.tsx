@@ -15,13 +15,13 @@ export default function PitScoutUploadStatus({ status }: { status: string }) {
     >
       {status === 'pending' ? (
         <>
-          Needs Completing
+          <a className="hidden lg:block">Needs Completing</a>
           <ClockIcon className="ml-1 w-4 text-gray-500" />
         </>
       ) : null}
       {status === 'uploaded' ? (
         <>
-          Completed
+          <a className="hidden lg:block">Completed</a>
           <CheckIcon className="ml-1 w-4 text-white" />
         </>
       ) : null}
