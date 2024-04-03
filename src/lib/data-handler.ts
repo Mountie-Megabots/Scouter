@@ -259,16 +259,16 @@ export async function GetTeamByNum(teamNum) {
 
 export async function fetchCardData() {
   try {
-    const nextMatch = []
+    let nextMatch = []
     try {
-      await FetchUpcomingMatches().then((matches) => matches[0].matchNum);
+      nextMatch = await FetchUpcomingMatches().then((matches) => matches[0].matchNum);
     }
     catch (error) {
       console.log("Failed to Fetch Matches")
     }
     const totalTeams = await fetchTeams().then((teams) => teams.length);
-    const highScore = 110;
-    const ourNextMatch = 5;
+    const highScore = 'Null';
+    const ourNextMatch = 'Null';
 
     return {
       totalTeams,
