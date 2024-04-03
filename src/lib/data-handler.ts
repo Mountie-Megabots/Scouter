@@ -83,7 +83,7 @@ export async function fetchTeams() {
           avgNotesScored: '0',
           avgClimb: '0%',
           teamNum: fullTeam.data.teamNum,
-          pitscout: await getPitScout(fullTeam.data.teamNum)
+          pitscout: await getPitScoutStatus(fullTeam.data.teamNum)
         });
       };
 
@@ -109,21 +109,21 @@ export async function createComp(name, blueid) {
   }
 }
 
-export async function getPitScout(teamNum) {
+export async function getPitScoutStatus(teamNum) {
   try {
-    const pitscouts = await MakeScoutPiRequest(`/pitscout/comp/${getCurrentComp()}/all`);
+    const pitscout = await MakeScoutPiRequest(`/pitscout/comp/${getCurrentComp()}/team/${teamNum}`);
 
-    let match = false
+    // let match = false
 
-    pitscouts.data.forEach(pitscout => {
-      // console.log(pitscout.teamNum + " : " + teamNum)
-      if(pitscout.teamNum == teamNum){
-        console.log('MATCH')
-        match = true
-      }
-    });
+    // pitscouts.data.forEach(pitscout => {
+    //   // console.log(pitscout.teamNum + " : " + teamNum)
+    //   if(pitscout.teamNum == teamNum){
+    //     console.log('MATCH')
+    //     match = true
+    //   }
+    // });
 
-    if(match){
+    if(pitscout.data != null){
       return 'uploaded'
     }else{
       return 'pending'
@@ -133,6 +133,10 @@ export async function getPitScout(teamNum) {
   } catch (error) {
     console.error('Failed To Get Pitscout Data:', error)
   }
+}
+
+export async function getPitScoutByTeam(teamNum) {
+  return await MakeScoutPiRequest(`/pitscout/comp/${getCurrentComp()}/team/${teamNum}`);
 }
 
 export async function createPitScout(formData){

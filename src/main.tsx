@@ -5,10 +5,10 @@ import LoginPage from './pages/LoginPage.tsx'
 import Dashboard from './pages/dashboard/dashboard.tsx'
 import Matches from './pages/matches.tsx'
 import Teams from './pages/teams/teams.tsx'
-import Picklist from './[compID]/dashboard/picklist/picklist.tsx'
 import Settings from './pages/settings.tsx'
 import CreateComp from './pages/dashboard/createcomp.tsx'
 import CreatePitScout from './pages/teams/pitscout.tsx'
+import ViewTeams from './pages/teams/ViewTeam.tsx'
 
 if(window.location.pathname == "/" && localStorage.getItem('token') == null){
   ReactDOM.createRoot(document.getElementById('root')!).render(
@@ -65,6 +65,14 @@ else if(window.location.pathname == "/dashboard/teams/pitscout" && localStorage.
   ReactDOM.createRoot(document.getElementById('root')!).render(
     <React.StrictMode>
       <CreatePitScout />
+    </React.StrictMode>,
+  )
+}
+
+else if(window.location.pathname == "/dashboard/teams/view" && localStorage.getItem('token') != null){
+  ReactDOM.createRoot(document.getElementById('root')!).render(
+    <React.StrictMode>
+      <ViewTeams/>
     </React.StrictMode>,
   )
 }

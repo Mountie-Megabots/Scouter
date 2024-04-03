@@ -8,41 +8,10 @@ import {
 import { Button } from '../button';
 import { createComp, createPitScout } from '../../lib/data-handler';
 
-export default function PitScoutForm({ teamNum }: { teamNum }) {
+export default function ViewPitScoutForm({ pitscout }: { pitscout }) {
   return (
-    <form onSubmit={(event) => {
-        event.preventDefault()
-        //@ts-ignore
-        createPitScout(event)
-        }
-      }>
+    <form>
       <div className="rounded-md bg-gray-50 p-4 md:p-6">
-        {/* Customer Name */}
-        <div className="mb-4">
-          <label htmlFor="team" className="mb-2 block text-sm font-medium">
-            Choose Team
-          </label>
-          <div className="relative">
-            <select
-              id="team"
-              name="teamNum"
-              className="peer block w-full cursor-pointer rounded-md border border-gray-200 py-2 pl-10 text-sm outline-2 placeholder:text-gray-500"
-              defaultValue=""
-            >
-              <option value="" disabled>
-                Select a team
-              </option>
-              {teamNum.map((team) => {
-                if(team.pitscout == 'pending'){
-                 return (<option key={team.teamNum} value={team.teamNum}>
-                    {team.teamNum}
-                  </option>)
-                }
-              })}
-            </select>
-            <UserCircleIcon className="pointer-events-none absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-500" />
-          </div>
-        </div>
 
         <div className="mb-4">
           <label htmlFor="frame" className="mb-2 block text-sm font-medium">
@@ -54,7 +23,8 @@ export default function PitScoutForm({ teamNum }: { teamNum }) {
                 id="frame"
                 name="autoroutines"
                 type="string"
-                placeholder="Enter auto routines"
+                defaultValue={pitscout.data.autoRoutines}
+                disabled
                 className="peer block w-full rounded-md border border-gray-200 py-2 pl-10 text-sm outline-2 placeholder:text-gray-500"
               />
               <InformationCircleIcon className="pointer-events-none absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-500 peer-focus:text-gray-900" />
@@ -64,11 +34,13 @@ export default function PitScoutForm({ teamNum }: { teamNum }) {
 
         <div className="mb-4">
           <label htmlFor="robotpic" className="mb-2 block text-sm font-medium">
-            Robot Picture Upload
+            Robot Picture
           </label>
           <div className="relative mt-2 rounded-md">
             <div className="relative">
-            <input type="file" id="robotpic" name="filename" required/>
+            <img
+            src=''
+            />
             </div>
           </div>
         </div>
@@ -84,7 +56,8 @@ export default function PitScoutForm({ teamNum }: { teamNum }) {
                 id="frame"
                 name="frameprimeter"
                 type="string"
-                placeholder="Enter frame primeter"
+                defaultValue={pitscout.data.framePrimeter}
+                disabled
                 className="peer block w-full rounded-md border border-gray-200 py-2 pl-10 text-sm outline-2 placeholder:text-gray-500"
               />
               <InformationCircleIcon className="pointer-events-none absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-500 peer-focus:text-gray-900" />
@@ -104,7 +77,8 @@ export default function PitScoutForm({ teamNum }: { teamNum }) {
                 name="totalweight"
                 type="number"
                 step="0.01"
-                placeholder="Enter weight"
+                defaultValue={pitscout.data.weight}
+                disabled
                 className="peer block w-full rounded-md border border-gray-200 py-2 pl-10 text-sm outline-2 placeholder:text-gray-500"
               />
               <InformationCircleIcon className="pointer-events-none absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-500 peer-focus:text-gray-900" />
@@ -115,7 +89,7 @@ export default function PitScoutForm({ teamNum }: { teamNum }) {
         {/* Invoice Amount */}
         <div className="mb-4">
           <label htmlFor="drivetrain" className="mb-2 block text-sm font-medium">
-            Drivetrain (ex. SDS MK4's or Tank Drive)
+            Drivetrain Type
           </label>
           <div className="relative mt-2 rounded-md">
             <div className="relative">
@@ -123,7 +97,8 @@ export default function PitScoutForm({ teamNum }: { teamNum }) {
                 id="drivetrain"
                 name="drivetraintype"
                 type="string"
-                placeholder="Enter drivetrain"
+                defaultValue={pitscout.data.drivetrain}
+                disabled
                 className="peer block w-full rounded-md border border-gray-200 py-2 pl-10 text-sm outline-2 placeholder:text-gray-500"
               />
               <InformationCircleIcon className="pointer-events-none absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-500 peer-focus:text-gray-900" />
@@ -145,6 +120,8 @@ export default function PitScoutForm({ teamNum }: { teamNum }) {
                   type="radio"
                   value="ground"
                   className="h-4 w-4 cursor-pointer border-gray-300 bg-gray-100 text-gray-600 focus:ring-2"
+                  disabled
+                  checked={pitscout.data.intake == 'ground'}
                 />
                 <label
                   htmlFor="ground"
@@ -160,6 +137,8 @@ export default function PitScoutForm({ teamNum }: { teamNum }) {
                   type="radio"
                   value="source"
                   className="h-4 w-4 cursor-pointer border-gray-300 bg-gray-100 text-gray-600 focus:ring-2"
+                  disabled
+                  checked={pitscout.data.intake == 'source'}
                 />
                 <label
                   htmlFor="source"
@@ -175,6 +154,8 @@ export default function PitScoutForm({ teamNum }: { teamNum }) {
                   type="radio"
                   value="both"
                   className="h-4 w-4 cursor-pointer border-gray-300 bg-gray-100 text-gray-600 focus:ring-2"
+                  disabled
+                  checked={pitscout.data.intake == 'both'}
                 />
                 <label
                   htmlFor="both"
@@ -190,6 +171,8 @@ export default function PitScoutForm({ teamNum }: { teamNum }) {
                   type="radio"
                   value="none"
                   className="h-4 w-4 cursor-pointer border-gray-300 bg-gray-100 text-gray-600 focus:ring-2"
+                  disabled
+                  checked={pitscout.data.intake == 'none'}
                 />
                 <label
                   htmlFor="none"
@@ -212,7 +195,8 @@ export default function PitScoutForm({ teamNum }: { teamNum }) {
                 id="auto"
                 name="scoringpos"
                 type="string"
-                placeholder="Enter auto routines"
+                defaultValue={pitscout.data.scoringPos}
+                disabled
                 className="peer block w-full rounded-md border border-gray-200 py-2 pl-10 text-sm outline-2 placeholder:text-gray-500"
               />
               <InformationCircleIcon className="pointer-events-none absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-500 peer-focus:text-gray-900" />
@@ -233,6 +217,8 @@ export default function PitScoutForm({ teamNum }: { teamNum }) {
                   type="radio"
                   value="false"
                   className="h-4 w-4 cursor-pointer border-gray-300 bg-gray-100 text-gray-600 focus:ring-2"
+                  disabled
+                  checked={!pitscout.data.driveUnderStage}
                 />
                 <label
                   htmlFor="false"
@@ -248,6 +234,8 @@ export default function PitScoutForm({ teamNum }: { teamNum }) {
                   type="radio"
                   value="true"
                   className="h-4 w-4 cursor-pointer border-gray-300 bg-gray-100 text-gray-600 focus:ring-2"
+                  disabled
+                  checked={pitscout.data.driveUnderStage}
                 />
                 <label
                   htmlFor="true"
@@ -270,7 +258,8 @@ export default function PitScoutForm({ teamNum }: { teamNum }) {
                 id="comment"
                 name="comments"
                 type="string"
-                placeholder="Enter your Comments"
+                defaultValue={pitscout.data.comments}
+                disabled
                 className="peer block w-full rounded-md border border-gray-200 py-2 pl-10 text-sm outline-2 placeholder:text-gray-500"
               />
               <InformationCircleIcon className="pointer-events-none absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-500 peer-focus:text-gray-900" />
@@ -280,15 +269,6 @@ export default function PitScoutForm({ teamNum }: { teamNum }) {
 
       </div>
 
-      <div className="mt-6 flex justify-end gap-4">
-        <a
-          href="/dashboard/matches"
-          className="flex h-10 items-center rounded-lg bg-gray-100 px-4 text-sm font-medium text-gray-600 transition-colors hover:bg-gray-200"
-        >
-          Cancel
-        </a>
-        <Button type="submit">Create Pit Scout</Button>
-      </div>
     </form>
   );
 }
