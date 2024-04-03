@@ -15,6 +15,7 @@ export default defineConfig({
         settings: resolve(__dirname, '/dashboard/settings.html'),
         addcomp: resolve(__dirname, '/dashboard/addcomp.html'),
         pitscout: resolve(__dirname, '/dashboard/teams/pitscout.html'),
+        view: resolve(__dirname, '/dashboard/teams/view.html'),
       },
     },
   },
