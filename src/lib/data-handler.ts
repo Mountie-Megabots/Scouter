@@ -2,6 +2,7 @@
 
 import Teams from '../pages/teams/teams';
 import { MakeScoutPiPostRequest, MakeScoutPiRequest } from './api-handler'
+import { json2csv } from 'json-2-csv';
 
 export async function fetchMatches() {
 
@@ -160,6 +161,18 @@ export async function getPitScoutStatus(teamNum) {
 export async function getPitScoutCSV() {
   try {
     const pitscout = await MakeScoutPiRequest(`/pitscout/comp/${getCurrentComp()}/all`);
+    const csv = await json2csv(pitscout,{excludeKeys:['botPic']});
+    var element = document.createElement('a');
+    element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(csv));
+    element.setAttribute('download', 'pitscout.csv');
+
+    element.style.display = 'none';
+    document.body.appendChild(element);
+
+    element.click();
+
+    document.body.removeChild(element);
+    console.log(csv)
   } catch (error) {
     console.error('Failed To Get Pitscout Data:', error)
   }
