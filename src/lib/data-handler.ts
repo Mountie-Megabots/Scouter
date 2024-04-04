@@ -139,7 +139,7 @@ export async function getPitScoutByTeam(teamNum) {
   return await MakeScoutPiRequest(`/pitscout/comp/${getCurrentComp()}/team/${teamNum}`);
 }
 
-export async function createPitScout(formData){
+export async function createPitScout(formData, botPic){
   try {
 
     let underStage = false
@@ -150,7 +150,7 @@ export async function createPitScout(formData){
 
     let newFormData = {
       teamNum: Number(formData.target.teamNum.value),
-      botPic: formData.target.filename.value,
+      botPic: "data:image/png;base64," + botPic,
       autoRoutines: formData.target.autoroutines.value,
       framePrimeter: Number(formData.target.frameprimeter.value),
       weight: Number(formData.target.totalweight.value),

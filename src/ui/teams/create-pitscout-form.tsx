@@ -9,11 +9,14 @@ import { Button } from '../button';
 import { createComp, createPitScout } from '../../lib/data-handler';
 
 export default function PitScoutForm({ teamNum }: { teamNum }) {
+
+  let botPic = ''
+
   return (
     <form onSubmit={(event) => {
         event.preventDefault()
         //@ts-ignore
-        createPitScout(event)
+        createPitScout(event, botPic)
         }
       }>
       <div className="rounded-md bg-gray-50 p-4 md:p-6">
@@ -68,7 +71,23 @@ export default function PitScoutForm({ teamNum }: { teamNum }) {
           </label>
           <div className="relative mt-2 rounded-md">
             <div className="relative">
-            <input type="file" id="robotpic" name="filename" required/>
+            <input type="file" id="robotpic" name="filename" onChange={
+              () => {
+                let file = document.querySelector(
+                    'input[type=file]')['files'][0];
+     
+                let reader = new FileReader();
+                console.log("Converting Bot Pic");
+     
+                reader.onload = function () {
+                    botPic = reader.result.replace("data:", "")
+                        .replace(/^.+,/, "");
+     
+                    console.log(botPic);
+                }
+                reader.readAsDataURL(file);
+            }
+            } required/>
             </div>
           </div>
         </div>

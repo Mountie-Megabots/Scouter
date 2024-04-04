@@ -39,7 +39,7 @@ export default function ViewPitScoutForm({ pitscout }: { pitscout }) {
           <div className="relative mt-2 rounded-md">
             <div className="relative">
             <img
-            src=''
+            src={pitscout.data.botPic}
             />
             </div>
           </div>
