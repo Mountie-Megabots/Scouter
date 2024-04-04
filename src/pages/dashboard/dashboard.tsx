@@ -1,4 +1,4 @@
-//@ts-ignore
+//@ts-nocheck
 import CardWrapper from '../../ui/dashboard/cards';
 import ScoreChart from '../../ui/dashboard/score-chart';
 import UpcomingMatches from '../../ui/dashboard/upcoming-matches';
