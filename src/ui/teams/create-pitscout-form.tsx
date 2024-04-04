@@ -23,7 +23,7 @@ export default function PitScoutForm({ teamNum }: { teamNum }) {
         {/* Customer Name */}
         <div className="mb-4">
           <label htmlFor="team" className="mb-2 block text-sm font-medium">
-            Choose Team
+            Choose Team *
           </label>
           <div className="relative">
             <select
@@ -31,6 +31,7 @@ export default function PitScoutForm({ teamNum }: { teamNum }) {
               name="teamNum"
               className="peer block w-full cursor-pointer rounded-md border border-gray-200 py-2 pl-10 text-sm outline-2 placeholder:text-gray-500"
               defaultValue=""
+              required
             >
               <option value="" disabled>
                 Select a team
@@ -49,7 +50,7 @@ export default function PitScoutForm({ teamNum }: { teamNum }) {
 
         <div className="mb-4">
           <label htmlFor="frame" className="mb-2 block text-sm font-medium">
-            Auto Routines Discription
+            Auto Routines Discription *
           </label>
           <div className="relative mt-2 rounded-md">
             <div className="relative">
@@ -59,6 +60,7 @@ export default function PitScoutForm({ teamNum }: { teamNum }) {
                 type="string"
                 placeholder="Enter auto routines"
                 className="peer block w-full rounded-md border border-gray-200 py-2 pl-10 text-sm outline-2 placeholder:text-gray-500"
+                required
               />
               <InformationCircleIcon className="pointer-events-none absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-500 peer-focus:text-gray-900" />
             </div>
@@ -67,7 +69,7 @@ export default function PitScoutForm({ teamNum }: { teamNum }) {
 
         <div className="mb-4">
           <label htmlFor="robotpic" className="mb-2 block text-sm font-medium">
-            Robot Picture Upload
+            Robot Picture Upload *
           </label>
           <div className="relative mt-2 rounded-md">
             <div className="relative">
@@ -95,7 +97,7 @@ export default function PitScoutForm({ teamNum }: { teamNum }) {
         {/* Invoice Amount */}
         <div className="mb-4">
           <label htmlFor="frame" className="mb-2 block text-sm font-medium">
-            Frame Primeter (Without Bumpers)
+            Frame Primeter (Without Bumpers) *
           </label>
           <div className="relative mt-2 rounded-md">
             <div className="relative">
@@ -105,6 +107,7 @@ export default function PitScoutForm({ teamNum }: { teamNum }) {
                 type="string"
                 placeholder="Enter frame primeter"
                 className="peer block w-full rounded-md border border-gray-200 py-2 pl-10 text-sm outline-2 placeholder:text-gray-500"
+                required
               />
               <InformationCircleIcon className="pointer-events-none absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-500 peer-focus:text-gray-900" />
             </div>
@@ -114,7 +117,7 @@ export default function PitScoutForm({ teamNum }: { teamNum }) {
         {/* Invoice Amount */}
         <div className="mb-4">
           <label htmlFor="weight" className="mb-2 block text-sm font-medium">
-            Robot Weight
+            Robot Weight *
           </label>
           <div className="relative mt-2 rounded-md">
             <div className="relative">
@@ -125,25 +128,83 @@ export default function PitScoutForm({ teamNum }: { teamNum }) {
                 step="0.01"
                 placeholder="Enter weight"
                 className="peer block w-full rounded-md border border-gray-200 py-2 pl-10 text-sm outline-2 placeholder:text-gray-500"
+                required
               />
               <InformationCircleIcon className="pointer-events-none absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-500 peer-focus:text-gray-900" />
             </div>
           </div>
         </div>
 
+        <fieldset>
+          <legend className="mb-2 block text-sm font-medium">
+            Drivetrain Type *
+          </legend>
+          <div className="rounded-md border border-gray-200 bg-white px-[14px] py-3">
+            <div className="flex gap-4">
+              <div className="flex items-center">
+                <input
+                  id="swerve"
+                  name="drivetrain"
+                  type="radio"
+                  value="swerve"
+                  className="h-4 w-4 cursor-pointer border-gray-300 bg-gray-100 text-gray-600 focus:ring-2"
+                  required
+                />
+                <label
+                  htmlFor="swerve"
+                  className="ml-2 flex cursor-pointer items-center gap-1.5 rounded-full bg-gray-100 px-3 py-1.5 text-xs font-medium text-gray-600"
+                >
+                  Swerve
+                </label>
+              </div>
+              <div className="flex items-center">
+                <input
+                  id="mecanum"
+                  name="drivetrain"
+                  type="radio"
+                  value="mecanum"
+                  className="h-4 w-4 cursor-pointer border-gray-300 bg-gray-100 text-gray-600 focus:ring-2"
+                />
+                <label
+                  htmlFor="mecanum"
+                  className="ml-2 flex cursor-pointer items-center gap-1.5 rounded-full bg-gray-100 px-3 py-1.5 text-xs font-medium text-gray-600"
+                >
+                  Mecanum
+                </label>
+              </div>
+              <div className="flex items-center">
+                <input
+                  id="tank"
+                  name="drivetrain"
+                  type="radio"
+                  value="tank"
+                  className="h-4 w-4 cursor-pointer border-gray-300 bg-gray-100 text-gray-600 focus:ring-2"
+                />
+                <label
+                  htmlFor="tank"
+                  className="ml-2 flex cursor-pointer items-center gap-1.5 rounded-full bg-gray-100 px-3 py-1.5 text-xs font-medium text-gray-600"
+                >
+                  Diff/Tank
+                </label>
+              </div>
+            </div>
+          </div>
+        </fieldset>  
+
         {/* Invoice Amount */}
         <div className="mb-4">
           <label htmlFor="drivetrain" className="mb-2 block text-sm font-medium">
-            Drivetrain (ex. SDS MK4's or Tank Drive)
+            Drivetrain Notes (ex. SDS MK4's or Sims Tank) *
           </label>
           <div className="relative mt-2 rounded-md">
             <div className="relative">
               <input
-                id="drivetrain"
-                name="drivetraintype"
+                id="drivetrainnote"
+                name="drivetrainnotes"
                 type="string"
-                placeholder="Enter drivetrain"
+                placeholder="Enter drivetrain notes"
                 className="peer block w-full rounded-md border border-gray-200 py-2 pl-10 text-sm outline-2 placeholder:text-gray-500"
+                required
               />
               <InformationCircleIcon className="pointer-events-none absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-500 peer-focus:text-gray-900" />
             </div>
@@ -153,7 +214,7 @@ export default function PitScoutForm({ teamNum }: { teamNum }) {
         {/* Invoice Status */}
         <fieldset>
           <legend className="mb-2 block text-sm font-medium">
-            Intake
+            Intake *
           </legend>
           <div className="rounded-md border border-gray-200 bg-white px-[14px] py-3">
             <div className="flex gap-4">
@@ -164,6 +225,7 @@ export default function PitScoutForm({ teamNum }: { teamNum }) {
                   type="radio"
                   value="ground"
                   className="h-4 w-4 cursor-pointer border-gray-300 bg-gray-100 text-gray-600 focus:ring-2"
+                  required
                 />
                 <label
                   htmlFor="ground"
@@ -221,9 +283,65 @@ export default function PitScoutForm({ teamNum }: { teamNum }) {
           </div>
         </fieldset>
 
+        <fieldset>
+          <legend className="mb-2 block text-sm font-medium">
+            Scoring Capability *
+          </legend>
+          <div className="rounded-md border border-gray-200 bg-white px-[14px] py-3">
+            <div className="flex gap-4">
+              <div className="flex items-center">
+                <input
+                  id="speaker"
+                  name="scoring"
+                  type="radio"
+                  value="speaker"
+                  className="h-4 w-4 cursor-pointer border-gray-300 bg-gray-100 text-gray-600 focus:ring-2"
+                  required
+                />
+                <label
+                  htmlFor="speaker"
+                  className="ml-2 flex cursor-pointer items-center gap-1.5 rounded-full bg-gray-100 px-3 py-1.5 text-xs font-medium text-gray-600"
+                >
+                  Speaker Only
+                </label>
+              </div>
+              <div className="flex items-center">
+                <input
+                  id="amp"
+                  name="scoring"
+                  type="radio"
+                  value="amp"
+                  className="h-4 w-4 cursor-pointer border-gray-300 bg-gray-100 text-gray-600 focus:ring-2"
+                />
+                <label
+                  htmlFor="amp"
+                  className="ml-2 flex cursor-pointer items-center gap-1.5 rounded-full bg-gray-100 px-3 py-1.5 text-xs font-medium text-gray-600"
+                >
+                  Amp Only
+                </label>
+              </div>
+              <div className="flex items-center">
+                <input
+                  id="both"
+                  name="scoring"
+                  type="radio"
+                  value="both"
+                  className="h-4 w-4 cursor-pointer border-gray-300 bg-gray-100 text-gray-600 focus:ring-2"
+                />
+                <label
+                  htmlFor="both"
+                  className="ml-2 flex cursor-pointer items-center gap-1.5 rounded-full bg-gray-100 px-3 py-1.5 text-xs font-medium text-gray-600"
+                >
+                  Both
+                </label>
+              </div>
+            </div>
+          </div>
+        </fieldset>
+
         <div className="mb-4">
           <label htmlFor="auto" className="mb-2 block text-sm font-medium">
-            Scoring Positions Discrptions
+            Scoring Positions Discrptions *
           </label>
           <div className="relative mt-2 rounded-md">
             <div className="relative">
@@ -231,8 +349,9 @@ export default function PitScoutForm({ teamNum }: { teamNum }) {
                 id="auto"
                 name="scoringpos"
                 type="string"
-                placeholder="Enter auto routines"
+                placeholder="Enter scoring positions"
                 className="peer block w-full rounded-md border border-gray-200 py-2 pl-10 text-sm outline-2 placeholder:text-gray-500"
+                required
               />
               <InformationCircleIcon className="pointer-events-none absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-500 peer-focus:text-gray-900" />
             </div>
@@ -241,17 +360,18 @@ export default function PitScoutForm({ teamNum }: { teamNum }) {
 
         <fieldset>
           <legend className="mb-2 block text-sm font-medium">
-              Can Drive Under Stage?
+              Can Do Trap? *
           </legend>
           <div className="rounded-md border border-gray-200 bg-white px-[14px] py-3">
             <div className="flex gap-4">
               <div className="flex items-center">
                 <input
                   id="false"
-                  name="stage"
+                  name="trap"
                   type="radio"
                   value="false"
                   className="h-4 w-4 cursor-pointer border-gray-300 bg-gray-100 text-gray-600 focus:ring-2"
+                  required
                 />
                 <label
                   htmlFor="false"
@@ -263,7 +383,7 @@ export default function PitScoutForm({ teamNum }: { teamNum }) {
               <div className="flex items-center">
                 <input
                   id="true"
-                  name="stage"
+                  name="trap"
                   type="radio"
                   value="true"
                   className="h-4 w-4 cursor-pointer border-gray-300 bg-gray-100 text-gray-600 focus:ring-2"
@@ -279,6 +399,151 @@ export default function PitScoutForm({ teamNum }: { teamNum }) {
           </div>
         </fieldset>
 
+        <fieldset>
+          <legend className="mb-2 block text-sm font-medium">
+              Can Drive Under Stage? *
+          </legend>
+          <div className="rounded-md border border-gray-200 bg-white px-[14px] py-3">
+            <div className="flex gap-4">
+              <div className="flex items-center">
+                <input
+                  id="always"
+                  name="stage"
+                  type="radio"
+                  value="always"
+                  className="h-4 w-4 cursor-pointer border-gray-300 bg-gray-100 text-gray-600 focus:ring-2"
+                  required
+                />
+                <label
+                  htmlFor="always"
+                  className="ml-2 flex cursor-pointer items-center gap-1.5 rounded-full bg-gray-100 px-3 py-1.5 text-xs font-medium text-gray-600"
+                >
+                  Awalys 
+                </label>
+              </div>
+              <div className="flex items-center">
+                <input
+                  id="sometimes"
+                  name="stage"
+                  type="radio"
+                  value="sometimes"
+                  className="h-4 w-4 cursor-pointer border-gray-300 bg-gray-100 text-gray-600 focus:ring-2"
+                />
+                <label
+                  htmlFor="sometimes"
+                  className="ml-2 flex cursor-pointer items-center gap-1.5 rounded-full bg-gray-100 px-3 py-1.5 text-xs font-medium text-gray-600"
+                >
+                  Sometimes
+                </label>
+              </div>
+              <div className="flex items-center">
+                <input
+                  id="no"
+                  name="stage"
+                  type="radio"
+                  value="no"
+                  className="h-4 w-4 cursor-pointer border-gray-300 bg-gray-100 text-gray-600 focus:ring-2"
+                />
+                <label
+                  htmlFor="no"
+                  className="ml-2 flex cursor-pointer items-center gap-1.5 rounded-full bg-gray-100 px-3 py-1.5 text-xs font-medium text-gray-600"
+                >
+                  No
+                </label>
+              </div>
+            </div>
+          </div>
+        </fieldset>
+
+        <fieldset>
+          <legend className="mb-2 block text-sm font-medium">
+            Needs Help? *
+          </legend>
+          <div className="rounded-md border border-gray-200 bg-white px-[14px] py-3">
+            <div className="flex gap-4">
+              <div className="flex items-center">
+                <input
+                  id="auto"
+                  name="help"
+                  type="radio"
+                  value="auto"
+                  className="h-4 w-4 cursor-pointer border-gray-300 bg-gray-100 text-gray-600 focus:ring-2"
+                  required
+                />
+                <label
+                  htmlFor="auto"
+                  className="ml-2 flex cursor-pointer items-center gap-1.5 rounded-full bg-gray-100 px-3 py-1.5 text-xs font-medium text-gray-600"
+                >
+                  Auto Help
+                </label>
+              </div>
+              <div className="flex items-center">
+                <input
+                  id="electrical"
+                  name="help"
+                  type="radio"
+                  value="electrical"
+                  className="h-4 w-4 cursor-pointer border-gray-300 bg-gray-100 text-gray-600 focus:ring-2"
+                />
+                <label
+                  htmlFor="electrical"
+                  className="ml-2 flex cursor-pointer items-center gap-1.5 rounded-full bg-gray-100 px-3 py-1.5 text-xs font-medium text-gray-600"
+                >
+                  Electrical Help
+                </label>
+              </div>
+              <div className="flex items-center">
+                <input
+                  id="mechanical"
+                  name="help"
+                  type="radio"
+                  value="mechanical"
+                  className="h-4 w-4 cursor-pointer border-gray-300 bg-gray-100 text-gray-600 focus:ring-2"
+                />
+                <label
+                  htmlFor="mechanical"
+                  className="ml-2 flex cursor-pointer items-center gap-1.5 rounded-full bg-gray-100 px-3 py-1.5 text-xs font-medium text-gray-600"
+                >
+                  Mechanical Help
+                </label>
+              </div>
+              <div className="flex items-center">
+                <input
+                  id="none"
+                  name="help"
+                  type="radio"
+                  value="none"
+                  className="h-4 w-4 cursor-pointer border-gray-300 bg-gray-100 text-gray-600 focus:ring-2"
+                />
+                <label
+                  htmlFor="none"
+                  className="ml-2 flex cursor-pointer items-center gap-1.5 rounded-full bg-gray-100 px-3 py-1.5 text-xs font-medium text-gray-600"
+                >
+                  Doesn't Need Help
+                </label>
+              </div>
+            </div>
+          </div>
+        </fieldset>
+
+        <div className="mb-4">
+          <label htmlFor="helpscomment" className="mb-2 block text-sm font-medium">
+            More Details About Needed Help
+          </label>
+          <div className="relative mt-2 rounded-md">
+            <div className="relative">
+              <input
+                id="helpscomment"
+                name="helpcomments"
+                type="string"
+                placeholder="Enter details about help"
+                className="peer block w-full rounded-md border border-gray-200 py-2 pl-10 text-sm outline-2 placeholder:text-gray-500"
+              />
+              <InformationCircleIcon className="pointer-events-none absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-500 peer-focus:text-gray-900" />
+            </div>
+          </div>
+        </div>
+
         <div className="mb-4">
           <label htmlFor="comment" className="mb-2 block text-sm font-medium">
             Comments
@@ -289,7 +554,7 @@ export default function PitScoutForm({ teamNum }: { teamNum }) {
                 id="comment"
                 name="comments"
                 type="string"
-                placeholder="Enter your Comments"
+                placeholder="Enter your comments"
                 className="peer block w-full rounded-md border border-gray-200 py-2 pl-10 text-sm outline-2 placeholder:text-gray-500"
               />
               <InformationCircleIcon className="pointer-events-none absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-500 peer-focus:text-gray-900" />

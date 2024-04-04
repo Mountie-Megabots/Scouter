@@ -54,7 +54,29 @@ export async function fetchMatches() {
 
 export async function fetchTeams() {
   if (localStorage.getItem("teams") != null) {
-    return JSON.parse(localStorage.getItem("teams"));
+    
+    const rawTeams = JSON.parse(localStorage.getItem("teams"));
+
+    let teams = []
+
+    for (var i = 0; i < rawTeams.length; i++) {
+      let team = rawTeams[i]
+
+      teams.push({
+        name: team.name,
+        rank: team.rank,
+        image_url: team.image_url,
+        avgNotesScored: team.avgNotesScored,
+        avgClimb: team.avgClimb,
+        teamNum: team.teamNum,
+        pitscout: await getPitScoutStatus(team.teamNum)
+      });
+    };
+
+    localStorage.setItem("teams", JSON.stringify(teams));
+
+    return teams
+
   }
   else {
     try {
@@ -142,22 +164,27 @@ export async function getPitScoutByTeam(teamNum) {
 export async function createPitScout(formData, botPic){
   try {
 
-    let underStage = false
+    let trap = false
 
-    if(formData.target.stage.value == 'true'){
-      underStage = true
+    if(formData.target.trap.value == 'true'){
+      trap = true
     }
 
     let newFormData = {
       teamNum: Number(formData.target.teamNum.value),
       botPic: "data:image/png;base64," + botPic,
       autoRoutines: formData.target.autoroutines.value,
-      framePrimeter: Number(formData.target.frameprimeter.value),
+      framePrimeter: formData.target.frameprimeter.value,
+      drivetrainType: formData.target.drivetrain.value,
       weight: Number(formData.target.totalweight.value),
-      drivetrain: formData.target.drivetraintype.value,
+      drivetrain: formData.target.drivetrainnotes.value,
       intake: formData.target.status.value,
+      scoringType:  formData.target.scoring.value,
       scoringPos: formData.target.scoringpos.value,
-      driveUnderStage: underStage,
+      trap: trap,
+      driveUnderStage: formData.target.stage.value,
+      help: formData.target.help.value,
+      helpDetails: formData.target.helpcomments.value,
       comments: formData.target.comments.value
     }
 
