@@ -1,7 +1,7 @@
 import Pagination from '../../ui/matches/pagination';
 import Search from '../../ui/search';
 import Table from '../../ui/teams/table';
-import { AddComp, CreatePitScout, SyncNow } from '../../ui/matches/buttons';
+import { AddComp, CreatePitScout, ExportPitScout, SyncNow } from '../../ui/matches/buttons';
 // import { cairo_play } from '@/app/ui/fonts';
 import { InvoicesTableSkeleton } from '../../ui/skeletons';
 import { Suspense } from 'react';
@@ -29,6 +29,7 @@ export default function Teams() {
     </div>
     <div className="mt-4 flex items-center justify-between gap-2 md:mt-8">
     <Search placeholder="Search Teams..." />
+    <ExportPitScout />
     <CreatePitScout />
       </div>
       <Suspense fallback={<InvoicesTableSkeleton />}>

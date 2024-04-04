@@ -157,6 +157,14 @@ export async function getPitScoutStatus(teamNum) {
   }
 }
 
+export async function getPitScoutCSV() {
+  try {
+    const pitscout = await MakeScoutPiRequest(`/pitscout/comp/${getCurrentComp()}/all`);
+  } catch (error) {
+    console.error('Failed To Get Pitscout Data:', error)
+  }
+}
+
 export async function getPitScoutByTeam(teamNum) {
   return await MakeScoutPiRequest(`/pitscout/comp/${getCurrentComp()}/team/${teamNum}`);
 }

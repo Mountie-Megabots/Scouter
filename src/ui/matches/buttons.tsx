@@ -1,5 +1,6 @@
 //@ts-nocheck
-import { PencilIcon, PlusIcon, TrashIcon, ArrowPathIcon, ArrowTopRightOnSquareIcon } from '@heroicons/react/24/outline';
+import { PencilIcon, PlusIcon, TrashIcon, ArrowPathIcon, ArrowTopRightOnSquareIcon, ArrowDownOnSquareIcon } from '@heroicons/react/24/outline';
+import { getPitScoutCSV } from '../../lib/data-handler';
 
 export function CreateScoutData() {
   return (
@@ -22,6 +23,18 @@ export function CreatePitScout() {
       <span className="hidden md:block">Pit Scout</span>{' '}
       <PlusIcon className="h-5 md:ml-4" />
     </a>
+  );
+}
+
+export function ExportPitScout() {
+  return (
+    <button
+      onClick={getPitScoutCSV}
+      className="flex h-10 items-center rounded-lg bg-red-600 px-4 text-sm font-medium text-white transition-colors hover:bg-red-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-600"
+    >
+      <span className="hidden md:block">CSV Export</span>{' '}
+      <ArrowDownOnSquareIcon className="h-5 md:ml-4" />
+    </button>
   );
 }
 
