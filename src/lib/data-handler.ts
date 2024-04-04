@@ -336,6 +336,10 @@ export async function SignIn(formData) {
 }
 
 export async function SignOut() {
+  localStorage.removeItem("comps")
+  localStorage.removeItem("teams")
+  localStorage.removeItem("matches")
+  localStorage.removeItem("compID")
   localStorage.removeItem("token")
   window.location.href = "/"
 }
